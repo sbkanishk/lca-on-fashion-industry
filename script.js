@@ -437,21 +437,32 @@ const compSection = document.getElementById('comparison');
 if (compSection) compObs.observe(compSection);
 
 // ==============================================
-// CHANGED: Added the playVideo function here!
+// CHANGED: The playVideo function now pauses others!
 // ==============================================
 function playVideo(cardElement, videoId) {
+  // Yell "PAUSE" to all other iframes
+  const allIframes = document.querySelectorAll('.video-thumb iframe');
+  allIframes.forEach(iframe => {
+    iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+  });
+
   const thumbContainer = cardElement.querySelector('.video-thumb');
-  
+  const existingIframe = thumbContainer.querySelector('iframe');
+
+  // If already loaded, just play it
+  if (existingIframe) {
+    existingIframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+    return;
+  }
+
+  // Load new iframe with API enabled
   thumbContainer.innerHTML = `
     <iframe 
       style="position: absolute; inset: 0; width: 100%; height: 100%; border: none;" 
-      src="https://www.youtube.com/embed/${videoId}?autoplay=1" 
+      src="https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1" 
       title="YouTube video player" 
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
       allowfullscreen>
     </iframe>
   `;
-  
-  cardElement.onclick = null; 
-  cardElement.style.cursor = 'default';
 }
