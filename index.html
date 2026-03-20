@@ -1,26 +1,650 @@
-<div class="videos-section">
-    <div class="video-card" id="d4VTPLpfGq0">
-        <img src="thumbnail1.jpg" alt="Video 1 Thumbnail">
-        <h3>Video 1 Title</h3>
-        <p>Video 1 Description</p>
-        <p>Duration: Video 1 Duration</p>
-        <p>Key Insights: Video 1 Key Insights</p>
-        <button onclick="handleVideoClick('d4VTPLpfGq0')">Watch</button>
-    </div>
-    <div class="video-card" id="BiSYoeqb_VY">
-        <img src="thumbnail2.jpg" alt="Video 2 Thumbnail">
-        <h3>Video 2 Title</h3>
-        <p>Video 2 Description</p>
-        <p>Duration: Video 2 Duration</p>
-        <p>Key Insights: Video 2 Key Insights</p>
-        <button onclick="handleVideoClick('BiSYoeqb_VY')">Watch</button>
-    </div>
-    <div class="video-card" id="VaS-iVwaOLw">
-        <img src="thumbnail3.jpg" alt="Video 3 Thumbnail">
-        <h3>Video 3 Title</h3>
-        <p>Video 3 Description</p>
-        <p>Duration: Video 3 Duration</p>
-        <p>Key Insights: Video 3 Key Insights</p>
-        <button onclick="handleVideoClick('VaS-iVwaOLw')">Watch</button>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LCA of the Fashion Industry</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Fashion LCA</div>
+  <div class="nav-links">
+    <a href="#journey">Journey</a>
+    <a href="#comparison">Compare</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#videos">Videos</a>
+    <a href="#calculator">Calculator</a>
+    <a href="#reduce">Reduce</a>
+    <a href="#map">Map</a>
+    <a href="#sources">Sources</a>
+  </div>
+  <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#journey" onclick="toggleMenu()">Journey</a>
+  <a href="#comparison" onclick="toggleMenu()">Compare Materials</a>
+  <a href="#timeline" onclick="toggleMenu()">Timeline</a>
+  <a href="#videos" onclick="toggleMenu()">Videos</a>
+  <a href="#calculator" onclick="toggleMenu()">Calculator</a>
+  <a href="#reduce" onclick="toggleMenu()">Reduce Impact</a>
+  <a href="#sources" onclick="toggleMenu()">Sources</a>
 </div>
+
+<section id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content fade-in">
+    <span class="hero-eyebrow">Life Cycle Assessment</span>
+    <h1 class="hero-title">The Hidden Cost<br>of <span>Fashion</span></h1>
+    <p class="hero-sub">Every garment leaves a trail — from cotton farm to landfill.<br>Explore the full environmental impact of the clothes we wear.</p>
+    <div class="hero-cta">
+      <a href="#calculator" class="btn-primary">Calculate My Garment</a>
+      <a href="#journey" class="btn-outline">Explore the Journey</a>
+    </div>
+  </div>
+  <div class="stats-bar fade-in">
+    <div class="stat-item"><div class="stat-num">2,700L</div><div class="stat-label">water per T-shirt</div></div>
+    <div class="stat-item"><div class="stat-num">10%</div><div class="stat-label">global CO₂ share</div></div>
+    <div class="stat-item"><div class="stat-num">92M t</div><div class="stat-label">landfilled yearly</div></div>
+    <div class="stat-item"><div class="stat-num">20%</div><div class="stat-label">water pollution</div></div>
+  </div>
+</section>
+
+<div class="ticker-wrap">
+  <div class="ticker-label">Did You Know?</div>
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
+<section id="journey">
+  <div class="section-inner">
+    <div class="section-label fade-in">Cradle to Grave</div>
+    <h2 class="section-title fade-in">The Garment's Journey</h2>
+    <p class="section-desc fade-in">Follow a cotton T-shirt through every stage of its life and the environmental cost at each step.</p>
+    <div id="journeyWrap"></div>
+  </div>
+</section>
+
+<section id="comparison">
+  <div class="section-inner">
+    <div class="section-label fade-in">Side by Side</div>
+    <h2 class="section-title fade-in">Material Impact <em>Compared</em></h2>
+    <p class="section-desc fade-in">See how different fabric choices compare across water use, carbon emissions, and chemical pollution — all per 1 kg of fibre produced.</p>
+    <div class="compare-tabs fade-in">
+      <button class="ctab active" onclick="showChart('water')">💧 Water Use</button>
+      <button class="ctab" onclick="showChart('co2')">🌡️ CO₂ Emissions</button>
+      <button class="ctab" onclick="showChart('chem')">⚗️ Chemical Load</button>
+    </div>
+    <div class="compare-legend fade-in" id="compareLegend"></div>
+    <div class="compare-chart-wrap fade-in">
+      <div class="chart-bars" id="compareChart"></div>
+    </div>
+    <p style="font-size:12px;color:var(--mt);margin-top:1.5rem;font-style:italic;">* Data per kg of fibre. Sources: WRAP, Textile Exchange, Higg Materials Sustainability Index.</p>
+  </div>
+</section>
+
+<section id="timeline">
+  <div class="section-inner">
+    <div class="section-label fade-in">Historical Context</div>
+    <h2 class="section-title fade-in">How We Got Here — <em>A Timeline</em></h2>
+    <p class="section-desc fade-in">Fashion's environmental impact didn't happen overnight. Here's how the industry evolved from slow craft to planetary crisis.</p>
+    <div class="tl-wrap fade-in">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">1800s–1950s</div>
+        <div class="tl-title">Slow Fashion Era</div>
+        <div class="tl-desc">Clothing was expensive, local, and made to last. Families owned few garments and repaired them routinely. The average American bought 3 garments per year. Environmental impact was minimal and localised.</div>
+        <span class="tl-stat">~3 garments/person/year</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">1960s–1980s</div>
+        <div class="tl-title">Synthetic Fibre Revolution</div>
+        <div class="tl-desc">Polyester, nylon, and acrylic — petroleum-based fibres — transformed the industry. Clothing became cheaper and more disposable. Global cotton demand surged, triggering mass irrigation and the beginning of the Aral Sea's collapse.</div>
+        <span class="tl-stat">Aral Sea: lost 90% volume by 2007</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">1990s</div>
+        <div class="tl-title">Globalisation &amp; Outsourcing</div>
+        <div class="tl-desc">Production shifted to low-wage countries (Bangladesh, China, Cambodia). Supply chains lengthened dramatically, increasing transport emissions. Labour and environmental standards weakened. Brands like Zara pioneered short production cycles.</div>
+        <span class="tl-stat">85% of garments now made in developing nations</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2000s</div>
+        <div class="tl-title">Fast Fashion Explosion</div>
+        <div class="tl-desc">Zara, H&amp;M, and Primark introduced the "52 seasons" model — new collections weekly. Global clothing production doubled between 2000 and 2015. Consumers in the EU now buy 60% more clothing than 15 years ago, but keep each garment half as long.</div>
+        <span class="tl-stat">Production doubled; garment lifespan halved</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2013</div>
+        <div class="tl-title">Rana Plaza Collapse</div>
+        <div class="tl-desc">A garment factory in Bangladesh collapsed, killing 1,134 workers. The disaster sparked global awareness of the true human and environmental cost of fast fashion.</div>
+        <span class="tl-stat">1,134 lives lost · turning point for transparency</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2015–2020</div>
+        <div class="tl-title">Sustainability Reckoning</div>
+        <div class="tl-desc">Fashion emerged as the world's 2nd or 3rd most polluting industry. The UN Alliance for Sustainable Fashion was formed. First mandatory EPR laws appeared in France.</div>
+        <span class="tl-stat">Fashion = 10% of global CO₂, 20% of water pollution</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2020–Now</div>
+        <div class="tl-title">The Circular Economy Push</div>
+        <div class="tl-desc">The EU Green Deal targets mandatory sustainability labelling by 2026. Resale platforms (Vinted, ThredUp) grew 20× faster than retail. Bio-based fibres, waterless dyeing, and fibre-to-fibre recycling reached commercial scale.</div>
+        <span class="tl-stat">Resale market to exceed fast fashion by 2030</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="videos">
+  <div class="section-inner">
+    <div class="section-label fade-in">Watch &amp; Learn</div>
+    <h2 class="section-title fade-in">Explore Through Film</h2>
+    <p class="section-desc fade-in">Curated documentaries and explainers on fashion's environmental footprint. Click any card to watch on YouTube.</p>
+    <div class="videos-grid fade-in">
+
+      <div class="video-card" onclick="playVideo(this, 'd4VTPLpfGq0')">
+        <div class="video-thumb">
+          <img src="https://img.youtube.com/vi/d4VTPLpfGq0/hqdefault.jpg" alt="Fast Fashion Environmental Impact">
+          <div class="play-btn"><svg viewBox="0 0 68 48" width="44"><path d="M66.5 7.7c-.8-2.9-3-5.2-5.9-6C55.8 0 34 0 34 0S12.2 0 7.4 1.7c-2.9.8-5.1 3.1-5.9 6C0 12.5 0 24 0 24s0 11.5 1.5 16.3c.8 2.9 3 5.2 5.9 6C12.2 48 34 48 34 48s21.8 0 26.6-1.7c2.9-.8 5.1-3.1 5.9-6C68 35.5 68 24 68 24S68 12.5 66.5 7.7z" fill="#ff0000"/><path d="M45 24 27 14v20z" fill="#fff"/></svg></div>
+        </div>
+        <div class="video-info">
+          <span class="video-tag">Documentary · Fast Fashion</span>
+          <div class="video-title">The True Environmental Cost of Fast Fashion</div>
+          <div class="video-desc">An eye-opening documentary exposing how fast fashion's relentless production cycle damages ecosystems, exploits labour, and generates staggering levels of textile waste worldwide.</div>
+          <div class="video-takeaway"><span class="vt-label">Key insight</span><span class="vt-text">Fashion industry pollution is accelerating — driven by overproduction and a throwaway consumer culture.</span></div>
+          <div class="watch-link">▶ Watch on YouTube</div>
+        </div>
+      </div>
+
+      <div class="video-card" onclick="playVideo(this, 'BiSYoeqb_VY')">
+        <div class="video-thumb">
+          <img src="https://img.youtube.com/vi/BiSYoeqb_VY/hqdefault.jpg" alt="The Life Cycle of a T-shirt">
+          <div class="play-btn"><svg viewBox="0 0 68 48" width="44"><path d="M66.5 7.7c-.8-2.9-3-5.2-5.9-6C55.8 0 34 0 34 0S12.2 0 7.4 1.7c-2.9.8-5.1 3.1-5.9 6C0 12.5 0 24 0 24s0 11.5 1.5 16.3c.8 2.9 3 5.2 5.9 6C12.2 48 34 48 34 48s21.8 0 26.6-1.7c2.9-.8 5.1-3.1 5.9-6C68 35.5 68 24 68 24S68 12.5 66.5 7.7z" fill="#ff0000"/><path d="M45 24 27 14v20z" fill="#fff"/></svg></div>
+          <span class="vid-dur">4:53</span>
+        </div>
+        <div class="video-info">
+          <span class="video-tag">TED-Ed · LCA Explainer</span>
+          <div class="video-title">The Life Cycle of a T-shirt</div>
+          <div class="video-desc">An animated TED-Ed explainer tracing a cotton tee from farm to wardrobe and beyond — the clearest, most concise LCA walkthrough available for students.</div>
+          <div class="video-takeaway"><span class="vt-label">Key insight</span><span class="vt-text">Washing accounts for a surprisingly large share of a garment's total lifetime environmental impact.</span></div>
+          <div class="watch-link">▶ Watch on YouTube</div>
+        </div>
+      </div>
+
+      <div class="video-card" onclick="playVideo(this, 'VaS-iVwaOLw')">
+        <div class="video-thumb">
+          <img src="https://img.youtube.com/vi/VaS-iVwaOLw/hqdefault.jpg" alt="Fashion Industry and the Environment">
+          <div class="play-btn"><svg viewBox="0 0 68 48" width="44"><path d="M66.5 7.7c-.8-2.9-3-5.2-5.9-6C55.8 0 34 0 34 0S12.2 0 7.4 1.7c-2.9.8-5.1 3.1-5.9 6C0 12.5 0 24 0 24s0 11.5 1.5 16.3c.8 2.9 3 5.2 5.9 6C12.2 48 34 48 34 48s21.8 0 26.6-1.7c2.9-.8 5.1-3.1 5.9-6C68 35.5 68 24 68 24S68 12.5 66.5 7.7z" fill="#ff0000"/><path d="M45 24 27 14v20z" fill="#fff"/></svg></div>
+        </div>
+        <div class="video-info">
+          <span class="video-tag">Environment · Textile Waste</span>
+          <div class="video-title">Fashion's Hidden Environmental Crisis</div>
+          <div class="video-desc">A deep dive into how the global fashion supply chain — from cotton fields to landfills — is driving water scarcity, chemical pollution, and a mounting textile waste crisis.</div>
+          <div class="video-takeaway"><span class="vt-label">Key insight</span><span class="vt-text">The fashion industry's environmental damage is mostly invisible to consumers at the point of purchase.</span></div>
+          <div class="watch-link">▶ Watch on YouTube</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="calculator">
+  <div class="section-inner">
+    <div class="section-label fade-in">LCA Tool</div>
+    <h2 class="section-title fade-in">Calculate Your Garment's Impact</h2>
+    <p class="section-desc fade-in">Enter details about a piece of clothing to estimate its full environmental footprint — or compare two garments head-to-head.</p>
+
+    <div class="calc-mode-toggle fade-in">
+      <button class="mode-btn active" onclick="setCalcMode('single', this)">Single Garment</button>
+      <button class="mode-btn" onclick="setCalcMode('compare', this)">Compare Two Garments</button>
+    </div>
+
+    <div id="singleMode">
+      <div class="calc-wrap">
+        <div class="calc-form fade-in">
+          <div class="form-group">
+            <label class="form-label">Garment Type</label>
+            <select class="form-select" id="garmentType">
+              <option value="tshirt">T-Shirt</option>
+              <option value="jeans">Jeans / Denim</option>
+              <option value="jacket">Jacket / Coat</option>
+              <option value="dress">Dress / Skirt</option>
+              <option value="underwear">Underwear / Socks</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Primary Material</label>
+            <select class="form-select" id="material">
+              <option value="cotton">Conventional Cotton</option>
+              <option value="organic">Organic Cotton</option>
+              <option value="polyester">Polyester (Synthetic)</option>
+              <option value="blend">Cotton–Polyester Blend</option>
+              <option value="wool">Wool</option>
+              <option value="linen">Linen / Hemp</option>
+              <option value="recycled">Recycled Fibre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Manufacturing Region</label>
+            <select class="form-select" id="region">
+              <option value="asia">Asia (China / Bangladesh / India)</option>
+              <option value="europe">Europe / Local</option>
+              <option value="americas">Americas</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <div class="slider-row">
+              <span class="form-label">Washes per Month</span>
+              <span class="slider-val" id="washVal">4</span>
+            </div>
+            <input type="range" min="1" max="20" step="1" value="4" id="washes"
+              oninput="document.getElementById('washVal').textContent=this.value">
+          </div>
+          <div class="form-group">
+            <div class="slider-row">
+              <span class="form-label">Years of Use</span>
+              <span class="slider-val" id="yearsVal">2</span>
+            </div>
+            <input type="range" min="1" max="15" step="1" value="2" id="years"
+              oninput="document.getElementById('yearsVal').textContent=this.value">
+          </div>
+          <div class="form-group">
+            <label class="form-label">End of Life</label>
+            <select class="form-select" id="disposal">
+              <option value="landfill">Landfill / Bin</option>
+              <option value="donate">Donated / Second-hand</option>
+              <option value="recycle">Textile Recycling</option>
+            </select>
+          </div>
+          <button class="calc-btn" onclick="calculate()">Calculate Environmental Impact</button>
+        </div>
+        <div class="calc-results" id="calcResults">
+          <div class="result-placeholder">
+            <span class="icon">🌿</span>
+            Fill in the details on the left and click <strong>Calculate</strong> to see your garment's full LCA score.
+          </div>
+        </div>
+      </div>
+    </div><div id="compareMode" style="display:none;">
+      <div class="calc-compare-wrap">
+        <div class="calc-form fade-in">
+          <p class="compare-garment-title">Garment A</p>
+          <div class="form-group">
+            <label class="form-label">Material</label>
+            <select class="form-select" id="matA">
+              <option value="cotton">Conventional Cotton</option>
+              <option value="organic">Organic Cotton</option>
+              <option value="polyester">Polyester (Synthetic)</option>
+              <option value="blend">Cotton–Poly Blend</option>
+              <option value="wool">Wool</option>
+              <option value="linen">Linen / Hemp</option>
+              <option value="recycled">Recycled Fibre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Garment Type</label>
+            <select class="form-select" id="typeA">
+              <option value="tshirt">T-Shirt</option>
+              <option value="jeans">Jeans</option>
+              <option value="jacket">Jacket</option>
+              <option value="dress">Dress</option>
+              <option value="underwear">Underwear</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <div class="slider-row">
+              <span class="form-label">Years of Use</span>
+              <span class="slider-val" id="yearsAVal">2</span>
+            </div>
+            <input type="range" min="1" max="15" step="1" value="2" id="yearsA"
+              oninput="document.getElementById('yearsAVal').textContent=this.value">
+          </div>
+          <div class="form-group">
+            <label class="form-label">End of Life</label>
+            <select class="form-select" id="disposalA">
+              <option value="landfill">Landfill</option>
+              <option value="donate">Donate</option>
+              <option value="recycle">Recycle</option>
+            </select>
+          </div>
+        </div>
+        <div class="calc-form fade-in">
+          <p class="compare-garment-title" style="color:#f5c06a;">Garment B</p>
+          <div class="form-group">
+            <label class="form-label">Material</label>
+            <select class="form-select" id="matB">
+              <option value="cotton">Conventional Cotton</option>
+              <option value="organic" selected>Organic Cotton</option>
+              <option value="polyester">Polyester (Synthetic)</option>
+              <option value="blend">Cotton–Poly Blend</option>
+              <option value="wool">Wool</option>
+              <option value="linen">Linen / Hemp</option>
+              <option value="recycled">Recycled Fibre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Garment Type</label>
+            <select class="form-select" id="typeB">
+              <option value="tshirt">T-Shirt</option>
+              <option value="jeans">Jeans</option>
+              <option value="jacket">Jacket</option>
+              <option value="dress">Dress</option>
+              <option value="underwear">Underwear</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <div class="slider-row">
+              <span class="form-label">Years of Use</span>
+              <span class="slider-val" id="yearsBVal">3</span>
+            </div>
+            <input type="range" min="1" max="15" step="1" value="3" id="yearsB"
+              oninput="document.getElementById('yearsBVal').textContent=this.value">
+          </div>
+          <div class="form-group">
+            <label class="form-label">End of Life</label>
+            <select class="form-select" id="disposalB">
+              <option value="landfill">Landfill</option>
+              <option value="donate" selected>Donate</option>
+              <option value="recycle">Recycle</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:1.5rem;">
+        <button class="calc-btn" style="max-width:320px;" onclick="compareGarments()">Compare Both Garments</button>
+      </div>
+      <div class="compare-results-wrap" id="compareResultsWrap">
+        <div class="compare-header">
+          <div></div>
+          <div class="compare-col-label" style="color:var(--g);">Garment A</div>
+          <div class="compare-col-label" style="color:#c08010;">Garment B</div>
+        </div>
+        <div id="compareRows"></div>
+        <div class="compare-grade-row">
+          <div style="font-size:12px;color:var(--mt);text-transform:uppercase;letter-spacing:0.08em;">Overall Grade</div>
+          <div class="compare-grade" id="gradeA"></div>
+          <div class="compare-grade" id="gradeB"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="map">
+  <div class="section-inner">
+    <div class="section-label fade-in">Global Hotspots</div>
+    <h2 class="section-title fade-in">Where Fashion <em>Hurts Most</em></h2>
+    <p class="section-desc fade-in">Fashion's environmental damage is concentrated in specific regions. Click a marker to learn more.</p>
+    <div class="map-wrap fade-in">
+      <svg id="worldMap" viewBox="0 0 900 440"
+        xmlns="http://www.w3.org/2000/svg"
+        style="width:100%;height:auto;display:block;"></svg>
+      <div class="map-tooltip" id="mapTooltip" style="display:none;"></div>
+    </div>
+  </div>
+</section>
+
+<section id="sources">
+  <div class="section-inner">
+    <div class="section-label fade-in">Research Basis</div>
+    <h2 class="section-title fade-in">References &amp; <em>Sources</em></h2>
+    <p class="section-desc fade-in">Data and findings in this project are drawn from peer-reviewed research, industry reports, and international environmental bodies.</p>
+    <div class="sources-grid fade-in">
+      <div class="source-card">
+        <div class="source-org">UNEP</div>
+        <div class="source-title">Putting the Brakes on Fast Fashion</div>
+        <div class="source-desc">UN Environment Programme report quantifying fashion's share of global CO₂, water use, and microplastic pollution across the full supply chain.</div>
+        <span class="source-year">2018 · United Nations</span>
+      </div>
+      <div class="source-card">
+        <div class="source-org">Ellen MacArthur Foundation</div>
+        <div class="source-title">A New Textiles Economy</div>
+        <div class="source-desc">Comprehensive circular economy framework for fashion — clothing production doubled from 2000–2015 while utilisation declined by nearly half.</div>
+        <span class="source-year">2017 · Circular Economy</span>
+      </div>
+      <div class="source-card">
+        <div class="source-org">WRAP</div>
+        <div class="source-title">Valuing Our Clothes: The Cost of UK Fashion</div>
+        <div class="source-desc">Lifecycle assessment of UK clothing, providing water, carbon, and waste data used widely in LCA studies including per-garment figures on this site.</div>
+        <span class="source-year">2017 · Waste &amp; Resources</span>
+      </div>
+      <div class="source-card">
+        <div class="source-org">Textile Exchange</div>
+        <div class="source-title">Preferred Fibre &amp; Materials Market Report</div>
+        <div class="source-desc">Annual benchmarking of sustainable material adoption globally, including comparative LCA data for organic cotton, recycled polyester, and linen.</div>
+        <span class="source-year">2023 · Annual Report</span>
+      </div>
+      <div class="source-card">
+        <div class="source-org">Higg Index / SAC</div>
+        <div class="source-title">Materials Sustainability Index (MSI)</div>
+        <div class="source-desc">The industry-standard tool for measuring and comparing environmental impact of materials at the fibre level — basis for the comparison chart on this site.</div>
+        <span class="source-year">2023 · Sustainable Apparel Coalition</span>
+      </div>
+      <div class="source-card">
+        <div class="source-org">ISO 14040 / 14044</div>
+        <div class="source-title">International LCA Standards</div>
+        <div class="source-desc">The ISO standards defining the four-phase LCA framework (Goal &amp; Scope → LCI → LCIA → Interpretation) used as the methodological basis for this project.</div>
+        <span class="source-year">2006 · ISO International</span>
+      </div>
+    </div>
+    <button class="print-btn" onclick="window.print()">🖨 Print / Save as PDF</button>
+  </div>
+</section>
+
+<section id="reduce">
+  <div class="section-inner">
+    <div class="section-label fade-in">Take Action</div>
+    <h2 class="section-title fade-in">How You Can <em>Reduce</em> the Impact</h2>
+    <p class="reduce-intro fade-in">
+      The fashion industry's footprint is enormous — but <strong>most of the power lies with consumers</strong>.
+      Small, deliberate changes across buying, care, and disposal habits can reduce a garment's lifetime impact by over 60%.
+    </p>
+
+    <div class="reduce-tabs fade-in">
+      <button class="rtab active" onclick="showPanel('buy')">🛍 When You Buy</button>
+      <button class="rtab" onclick="showPanel('care')">🧺 How You Care</button>
+      <button class="rtab" onclick="showPanel('discard')">♻️ How You Discard</button>
+      <button class="rtab" onclick="showPanel('industry')">🏭 Industry &amp; Policy</button>
+    </div>
+
+    <div class="reduce-panel active" id="panel-buy">
+      <div class="reduce-grid">
+        <div class="r-card fade-in">
+          <div class="r-card-top"><div class="r-icon ic-green">🌿</div><span class="r-name">Choose organic or natural fibres</span></div>
+          <p class="r-desc">Organic cotton uses 91% less water and eliminates synthetic pesticides. Linen and hemp need minimal water with no pesticides at all.</p>
+          <span class="r-impact ri-high">↓ 60–91% water saved</span>
+          <div class="impact-bar-mini"><div class="impact-bar-mini-fill" style="background:#8ab08a;width:88%"></div></div>
+        </div>
+        <div class="r-card fade-in">
+          <div class="r-card-top"><div class="r-icon ic-blue">♻️</div><span class="r-name">Buy recycled synthetics</span></div>
+          <p class="r-desc">Recycled polyester (rPET) uses 59% less energy and emits 75% less CO₂ than virgin polyester — without sacrificing performance.</p>
+          <span class="r-impact ri-high">↓ 75% CO₂ reduction</span>
+          <div class="impact-bar-mini"><div class="impact-bar-mini-fill" style="background:#5ba0d0;width:75%"></div></div>
+        </div>
+        <div class="r-card fade-in">
+          <div class="r-card-top"><div class="r-icon ic-amber">🕰</div><span class="r-name">Buy less, wear longer</span></div>
+          <p class="r-desc">Doubling the lifespan of a garment from 1 year to 2 reduces its total climate impact by 24%. Wearing it 3× longer cuts impact by ~65%.</p>
+          <span class="r-impact ri-high">↓ 65% lifetime impact</span>
+          <div class="impact-bar-mini"><div class="impact-bar-mini-fill" style="background:#d08050;width:65%"></div></div>
+        </div>
+        <div class="r-card fade-in">
+          <div class="r-card-top"><div class="r-icon ic-purple">👗</div><span class="r-name">Buy secondhand first</span></div>
+          <p class="r-desc">Secondhand clothing has already absorbed its production impact. Buying pre-loved avoids all raw material extraction and manufacturing emissions.</p>
+          <span class="r-impact ri-high">↓ ~80% production impact</span>
+          <div class="impact-bar-mini"><div class="impact-bar-mini-fill" style="background:#b870d0;width:80%"></div></div>
+        </div>
+        <div class="r-card fade-in">
+          <div class="r-card-top"><div class="r-icon ic-green">🏷</div><span class="r-name">Check certifications</span></div>
+          <p class="r-desc">Look for GOTS (organic textile), OEKO-TEX (chemical safety), Fair Trade, or bluesign labels — these verify responsible production along the supply chain.</p>
+          <span class="r-impact ri-med">Verified supply chain</span>
+          <div class="impact-bar-mini"><div class="impact-bar-mini-fill" style="background:#8ab08a;width:55%"></div></div>
+        </div>
+        <div class="r-card fade-in">
+          <div class="r-card-top"><div class="r-icon ic-red">🚫</div><span class="r-name">Avoid fast fashion hauls</span></div>
+          <p class="r-desc">Fast fashion brands release 52 "micro-seasons" per year. Each garment has a shorter lifespan, amplifying per-use impact and waste generation significantly.</p>
+          <span class="r-impact ri-med">↓ reduces waste by 40%</span>
+          <div class="impact-bar-mini"><div class="impact-bar-mini-fill" style="background:#d05060;width:50%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reduce-panel" id="panel-care">
+      <div class="reduce-grid">
+        <div class="r-card fade-in">
+          <div class="r-card-top"><div class="r-icon ic-blue">🌊</div><span class="r-name">Wash in cold water</span></div>
+          <p class="r-desc">90% of the energy used in a washing machine goes toward heating water. Cold washing saves up to 0.6 kg CO₂ per cycle with no reduction in cleaning performance.</p>
+          <span class="r-impact ri-high">↓ 90% washing energy</span>
+          <div class="impact-bar-mini"><div class="impact-bar-mini-fill" style="background:#5ba0d0;width:90%"></div></div>
+        </div>
+        <div class="r-card fade-in">
+          <div class="r-card-top"><div class="r-icon ic-green">💨</div><span class="r-name">Air-dry instead of tumble</span></div>
+          <p class="r-desc">Tumble dryers are the most energy-intensive home appliance per cycle. Air drying eliminates this entirely — and extends garment lifespan by reducing fibre stress.</p>
+          <span class="r-impact ri-high">↓ 100% dryer energy</span>
+          <div class="impact-bar-mini"><div class="impact-bar-mini-fill" style="background:#8ab08a;width:95%"></div></div>
+        </div>
+        <div class="r-card fade-in">
+          <div class="r-card-top"><div class="r-icon ic-purple">🔁</div><span class="r-name">Wash less often</span></div>
+          <p class="r-desc">Most clothes don't need washing after every wear. Spot-clean where needed. Washing jeans every 10 wears instead of every wear reduces their water impact by 75%.</p>
+          <span class="r-impact ri-high">↓ 75% water per garment</span>
+          <div class="impact-bar-mini"><div class="impact-bar-mini-fill" style="background:#b870d0;width:75%"></div></div>
+        </div>
+        <div class="r-card fade-in">
+          <div class="r-card-top"><div class="r-icon ic-blue">🔬</div><span class="r-name">Use a microfibre filter bag</span></div>
+          <p class="r-desc">Synthetic fabrics shed 500,000+ microfibres per wash that flow into oceans. Guppyfriend or Cora Ball filter bags catch 90% of these microplastic fibres.</p>
+          <span class="r-impact ri-high">↓ 90% microplastic shed</span>
+          <div class="impact-bar-mini"><div class="impact-bar-mini-fill" style="background:#5ba0d0;width:90%"></div></div>
+        </div>
+        <div class="r-card fade-in">
+          <div class="r-card-top"><div class="r-icon ic-amber">🧴</div><span class="r-name">Use eco-certified detergent</span></div>
+          <p class="r-desc">Conventional detergents contain surfactants, phosphates, and fragrances that persist in waterways. Eco-certified alternatives biodegrade rapidly and reduce aquatic toxicity.</p>
+          <span class="r-impact ri-med">↓ chemical pollution</span>
+          <div class="impact-bar-mini"><div class="impact-bar-mini-fill" style="background:#d08050;width:45%"></div></div>
+        </div>
+        <div class="r-card fade-in">
+          <div class="r-card-top"><div class="r-icon ic-green">🪡</div><span class="r-name">Repair before replacing</span></div>
+          <p class="r-desc">A simple button reattachment or seam repair extends garment life by years. Learning basic mending skills is one of the highest-impact individual actions available.</p>
+          <span class="r-impact ri-high">Extends life 2–5 years</span>
+          <div class="impact-bar-mini"><div class="impact-bar-mini-fill" style="background:#8ab08a;width:70%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reduce-panel" id="panel-discard">
+      <div class="reduce-grid">
+        <div class="r-card fade-in">
+          <div class="r-card-top"><div class="r-icon ic-green">🤝</div><span class="r-name">Donate to charity shops</span></div>
+          <p class="r-desc">Donating clothes in good condition extends their lifecycle and displaces new purchases. This is the single most impactful end-of-life choice — reducing disposal impact by ~70%.</p>
+          <span class="r-impact ri-high">↓ 70% end-of-life impact</span>
+          <div class="impact-bar-mini"><div class="impact-bar-mini-fill" style="background:#8ab08a;width:70%"></div></div>
+        </div>
+        <div class="r-card fade-in">
+          <div class="r-card-top"><div class="r-icon ic-blue">📦</div><span class="r-name">Use textile collection bins</span></div>
+          <p class="r-desc">Worn-out clothes not suitable for donation can be dropped at textile recycling bins (H&amp;M, Zara, municipality bins). Fibres are recovered for insulation, industrial rags, or new yarn.</p>
+          <span class="r-impact ri-high">↓ 62% waste impact</span>
+          <div class="impact-bar-mini"><div class="impact-bar-mini-fill" style="background:#5ba0d0;width:62%"></div></div>
+        </div>
+        <div class="r-card fade-in">
+          <div class="r-card-top"><div class="r-icon ic-amber">🛒</div><span class="r-name">Sell on resale platforms</span></div>
+          <p class="r-desc">Platforms like Vinted, Depop, and ThredUp let you sell unwanted clothes directly to new owners — earning money while keeping textiles in use and out of landfill.</p>
+          <span class="r-impact ri-high">Keeps textiles in use</span>
+          <div class="impact-bar-mini"><div class="impact-bar-mini-fill" style="background:#d08050;width:80%"></div></div>
+        </div>
+        <div class="r-card fade-in">
+          <div class="r-card-top"><div class="r-icon ic-purple">🎨</div><span class="r-name">Upcycle into new items</span></div>
+          <p class="r-desc">Old jeans become shorts, old T-shirts become tote bags or cleaning rags. Upcycling gives garments a creative second life and requires zero new production energy.</p>
+          <span class="r-impact ri-med">Zero production energy</span>
+          <div class="impact-bar-mini"><div class="impact-bar-mini-fill" style="background:#b870d0;width:55%"></div></div>
+        </div>
+        <div class="r-card fade-in">
+          <div class="r-card-top"><div class="r-icon ic-red">🚯</div><span class="r-name">Never bin fast fashion</span></div>
+          <p class="r-desc">Fast fashion items in landfill take 200+ years to decompose, leaching dye chemicals into groundwater and releasing methane. Even damaged synthetics should go to textile bins.</p>
+          <span class="r-impact ri-med">Avoids 200yr decompose</span>
+          <div class="impact-bar-mini"><div class="impact-bar-mini-fill" style="background:#d05060;width:60%"></div></div>
+        </div>
+        <div class="r-card fade-in">
+          <div class="r-card-top"><div class="r-icon ic-green">🔄</div><span class="r-name">Participate in clothing swaps</span></div>
+          <p class="r-desc">Community clothing swap events let you exchange garments you no longer wear for ones you will — zero production, zero cost, zero waste.</p>
+          <span class="r-impact ri-low">Zero-waste exchange</span>
+          <div class="impact-bar-mini"><div class="impact-bar-mini-fill" style="background:#8ab08a;width:40%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reduce-panel" id="panel-industry">
+      <div class="reduce-grid">
+        <div class="r-card fade-in">
+          <div class="r-card-top"><div class="r-icon ic-blue">💧</div><span class="r-name">Waterless dyeing technology</span></div>
+          <p class="r-desc">Supercritical CO₂ dyeing uses pressurised carbon dioxide instead of water — eliminating toxic effluent and reducing energy use by 50%. Already adopted by Nike and DyeCoo.</p>
+          <span class="r-impact ri-high">↓ 100% dye effluent</span>
+          <div class="impact-bar-mini"><div class="impact-bar-mini-fill" style="background:#5ba0d0;width:95%"></div></div>
+        </div>
+        <div class="r-card fade-in">
+          <div class="r-card-top"><div class="r-icon ic-green">☀️</div><span class="r-name">Renewable energy in factories</span></div>
+          <p class="r-desc">Switching manufacturing facilities from coal/gas to solar and wind power can cut production-stage CO₂ emissions by over 60%.</p>
+          <span class="r-impact ri-high">↓ 60% factory CO₂</span>
+          <div class="impact-bar-mini"><div class="impact-bar-mini-fill" style="background:#8ab08a;width:60%"></div></div>
+        </div>
+        <div class="r-card fade-in">
+          <div class="r-card-top"><div class="r-icon ic-amber">🔬</div><span class="r-name">Bio-based &amp; circular fibres</span></div>
+          <p class="r-desc">Innovations like Mylo (mushroom leather), Bolt Threads' spider silk, and Piñatex (pineapple fibre) replace petroleum-based synthetics with biodegradable alternatives.</p>
+          <span class="r-impact ri-med">Biodegradable materials</span>
+          <div class="impact-bar-mini"><div class="impact-bar-mini-fill" style="background:#d08050;width:50%"></div></div>
+        </div>
+        <div class="r-card fade-in">
+          <div class="r-card-top"><div class="r-icon ic-purple">📋</div><span class="r-name">Extended Producer Responsibility</span></div>
+          <p class="r-desc">Legislation that makes brands financially responsible for their products' end-of-life. France's EPR law (2021) requires brands to fund textile collection and recycling infrastructure.</p>
+          <span class="r-impact ri-high">Systemic policy change</span>
+          <div class="impact-bar-mini"><div class="impact-bar-mini-fill" style="background:#b870d0;width:75%"></div></div>
+        </div>
+        <div class="r-card fade-in">
+          <div class="r-card-top"><div class="r-icon ic-green">🏷</div><span class="r-name">Mandatory LCA labelling</span></div>
+          <p class="r-desc">Requiring brands to disclose water use, CO₂ emissions, and chemical inputs per garment at point of sale — proposed in the EU by 2026.</p>
+          <span class="r-impact ri-med">Consumer transparency</span>
+          <div class="impact-bar-mini"><div class="impact-bar-mini-fill" style="background:#8ab08a;width:50%"></div></div>
+        </div>
+        <div class="r-card fade-in">
+          <div class="r-card-top"><div class="r-icon ic-red">⚖️</div><span class="r-name">Tax on fast fashion</span></div>
+          <p class="r-desc">A proposed UK parliamentary bill (2019) would impose a 1p tax per garment to fund textile recycling. Similar taxes are under review across the EU, Australia, and Canada.</p>
+          <span class="r-impact ri-med">Economic incentive</span>
+          <div class="impact-bar-mini"><div class="impact-bar-mini-fill" style="background:#d05060;width:45%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reduce-pledge fade-in">
+      <div class="pledge-left">
+        <p class="pledge-title">Your Sustainable Fashion Pledge</p>
+        <p class="pledge-desc">Tick the habits you're committing to. Even 3–4 of these consistently practised can reduce your wardrobe's annual footprint by over 40%.</p>
+      </div>
+      <div class="pledge-checklist" id="pledgeList"></div>
+      <div class="pledge-score">
+        <span class="pledge-score-num" id="pledgeNum">0</span>
+        <span class="pledge-score-label">habits pledged</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-title">Fashion LCA Project</div>
+  <div class="footer-sub">Life Cycle Assessment · Environmental Studies · Sustainable Fashion</div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
