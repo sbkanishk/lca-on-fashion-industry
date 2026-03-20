@@ -362,7 +362,6 @@ const hotspots = [
 const worldSVG = document.getElementById('worldMap');
 worldSVG.innerHTML = `
 <rect width="900" height="440" fill="rgba(13,26,15,0.5)" rx="12"/>
-<!-- Simplified continent outlines -->
 <path class="map-country" d="M70,120 Q90,90 130,85 Q180,80 200,95 Q220,105 210,130 Q190,155 160,160 Q120,155 90,145 Z"/>
 <path class="map-country" d="M85,165 Q100,155 140,158 Q170,162 175,185 Q170,215 145,230 Q115,240 90,225 Q70,205 75,185 Z"/>
 <path class="map-country" d="M240,120 Q280,100 360,105 Q420,110 450,130 Q460,155 440,175 Q400,195 350,190 Q280,185 250,165 Q230,145 240,120 Z"/>
@@ -436,3 +435,23 @@ const compObs = new IntersectionObserver(entries => {
 }, { threshold: 0.2 });
 const compSection = document.getElementById('comparison');
 if (compSection) compObs.observe(compSection);
+
+// ==============================================
+// CHANGED: Added the playVideo function here!
+// ==============================================
+function playVideo(cardElement, videoId) {
+  const thumbContainer = cardElement.querySelector('.video-thumb');
+  
+  thumbContainer.innerHTML = `
+    <iframe 
+      style="position: absolute; inset: 0; width: 100%; height: 100%; border: none;" 
+      src="https://www.youtube.com/embed/${videoId}?autoplay=1" 
+      title="YouTube video player" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
+  `;
+  
+  cardElement.onclick = null; 
+  cardElement.style.cursor = 'default';
+}
