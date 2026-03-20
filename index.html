@@ -12,10 +12,10 @@
 <nav>
   <div class="nav-logo">Fashion LCA</div>
   <div class="nav-links">
+    <a href="#videos">Videos</a>
     <a href="#journey">Journey</a>
     <a href="#comparison">Compare</a>
     <a href="#timeline">Timeline</a>
-    <a href="#videos">Videos</a>
     <a href="#calculator">Calculator</a>
     <a href="#reduce">Reduce</a>
     <a href="#map">Map</a>
@@ -27,10 +27,10 @@
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
+  <a href="#videos" onclick="toggleMenu()">Videos</a>
   <a href="#journey" onclick="toggleMenu()">Journey</a>
   <a href="#comparison" onclick="toggleMenu()">Compare Materials</a>
   <a href="#timeline" onclick="toggleMenu()">Timeline</a>
-  <a href="#videos" onclick="toggleMenu()">Videos</a>
   <a href="#calculator" onclick="toggleMenu()">Calculator</a>
   <a href="#reduce" onclick="toggleMenu()">Reduce Impact</a>
   <a href="#sources" onclick="toggleMenu()">Sources</a>
@@ -60,6 +60,60 @@
   <div class="ticker-label">Did You Know?</div>
   <div class="ticker-track" id="tickerTrack"></div>
 </div>
+
+<section id="videos">
+  <div class="section-inner">
+    <div class="section-label fade-in">Watch &amp; Learn</div>
+    <h2 class="section-title fade-in">Explore Through Film</h2>
+    <p class="section-desc fade-in">Curated documentaries and explainers on fashion's environmental footprint. Click any card to watch on YouTube.</p>
+    <div class="videos-grid fade-in">
+
+      <div class="video-card" onclick="playVideo(this, 'd4VTPLpfGq0')">
+        <div class="video-thumb">
+          <img src="https://img.youtube.com/vi/d4VTPLpfGq0/hqdefault.jpg" alt="Fast Fashion Environmental Impact">
+          <div class="play-btn"><svg viewBox="0 0 68 48" width="44"><path d="M66.5 7.7c-.8-2.9-3-5.2-5.9-6C55.8 0 34 0 34 0S12.2 0 7.4 1.7c-2.9.8-5.1 3.1-5.9 6C0 12.5 0 24 0 24s0 11.5 1.5 16.3c.8 2.9 3 5.2 5.9 6C12.2 48 34 48 34 48s21.8 0 26.6-1.7c2.9-.8 5.1-3.1 5.9-6C68 35.5 68 24 68 24S68 12.5 66.5 7.7z" fill="#ff0000"/><path d="M45 24 27 14v20z" fill="#fff"/></svg></div>
+        </div>
+        <div class="video-info">
+          <span class="video-tag">Documentary · Fast Fashion</span>
+          <div class="video-title">The True Environmental Cost of Fast Fashion</div>
+          <div class="video-desc">An eye-opening documentary exposing how fast fashion's relentless production cycle damages ecosystems, exploits labour, and generates staggering levels of textile waste worldwide.</div>
+          <div class="video-takeaway"><span class="vt-label">Key insight</span><span class="vt-text">Fashion industry pollution is accelerating — driven by overproduction and a throwaway consumer culture.</span></div>
+          <div class="watch-link">▶ Watch on YouTube</div>
+        </div>
+      </div>
+
+      <div class="video-card" onclick="playVideo(this, 'BiSYoeqb_VY')">
+        <div class="video-thumb">
+          <img src="https://img.youtube.com/vi/BiSYoeqb_VY/hqdefault.jpg" alt="The Life Cycle of a T-shirt">
+          <div class="play-btn"><svg viewBox="0 0 68 48" width="44"><path d="M66.5 7.7c-.8-2.9-3-5.2-5.9-6C55.8 0 34 0 34 0S12.2 0 7.4 1.7c-2.9.8-5.1 3.1-5.9 6C0 12.5 0 24 0 24s0 11.5 1.5 16.3c.8 2.9 3 5.2 5.9 6C12.2 48 34 48 34 48s21.8 0 26.6-1.7c2.9-.8 5.1-3.1 5.9-6C68 35.5 68 24 68 24S68 12.5 66.5 7.7z" fill="#ff0000"/><path d="M45 24 27 14v20z" fill="#fff"/></svg></div>
+          <span class="vid-dur">4:53</span>
+        </div>
+        <div class="video-info">
+          <span class="video-tag">TED-Ed · LCA Explainer</span>
+          <div class="video-title">The Life Cycle of a T-shirt</div>
+          <div class="video-desc">An animated TED-Ed explainer tracing a cotton tee from farm to wardrobe and beyond — the clearest, most concise LCA walkthrough available for students.</div>
+          <div class="video-takeaway"><span class="vt-label">Key insight</span><span class="vt-text">Washing accounts for a surprisingly large share of a garment's total lifetime environmental impact.</span></div>
+          <div class="watch-link">▶ Watch on YouTube</div>
+        </div>
+      </div>
+
+      <div class="video-card" onclick="playVideo(this, 'VaS-iVwaOLw')">
+        <div class="video-thumb">
+          <img src="https://img.youtube.com/vi/VaS-iVwaOLw/hqdefault.jpg" alt="Fashion Industry and the Environment">
+          <div class="play-btn"><svg viewBox="0 0 68 48" width="44"><path d="M66.5 7.7c-.8-2.9-3-5.2-5.9-6C55.8 0 34 0 34 0S12.2 0 7.4 1.7c-2.9.8-5.1 3.1-5.9 6C0 12.5 0 24 0 24s0 11.5 1.5 16.3c.8 2.9 3 5.2 5.9 6C12.2 48 34 48 34 48s21.8 0 26.6-1.7c2.9-.8 5.1-3.1 5.9-6C68 35.5 68 24 68 24S68 12.5 66.5 7.7z" fill="#ff0000"/><path d="M45 24 27 14v20z" fill="#fff"/></svg></div>
+        </div>
+        <div class="video-info">
+          <span class="video-tag">Environment · Textile Waste</span>
+          <div class="video-title">Fashion's Hidden Environmental Crisis</div>
+          <div class="video-desc">A deep dive into how the global fashion supply chain — from cotton fields to landfills — is driving water scarcity, chemical pollution, and a mounting textile waste crisis.</div>
+          <div class="video-takeaway"><span class="vt-label">Key insight</span><span class="vt-text">The fashion industry's environmental damage is mostly invisible to consumers at the point of purchase.</span></div>
+          <div class="watch-link">▶ Watch on YouTube</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <section id="journey">
   <div class="section-inner">
@@ -143,60 +197,6 @@
         <div class="tl-desc">The EU Green Deal targets mandatory sustainability labelling by 2026. Resale platforms (Vinted, ThredUp) grew 20× faster than retail. Bio-based fibres, waterless dyeing, and fibre-to-fibre recycling reached commercial scale.</div>
         <span class="tl-stat">Resale market to exceed fast fashion by 2030</span>
       </div>
-    </div>
-  </div>
-</section>
-
-<section id="videos">
-  <div class="section-inner">
-    <div class="section-label fade-in">Watch &amp; Learn</div>
-    <h2 class="section-title fade-in">Explore Through Film</h2>
-    <p class="section-desc fade-in">Curated documentaries and explainers on fashion's environmental footprint. Click any card to watch on YouTube.</p>
-    <div class="videos-grid fade-in">
-
-      <div class="video-card" onclick="playVideo(this, 'd4VTPLpfGq0')">
-        <div class="video-thumb">
-          <img src="https://img.youtube.com/vi/d4VTPLpfGq0/hqdefault.jpg" alt="Fast Fashion Environmental Impact">
-          <div class="play-btn"><svg viewBox="0 0 68 48" width="44"><path d="M66.5 7.7c-.8-2.9-3-5.2-5.9-6C55.8 0 34 0 34 0S12.2 0 7.4 1.7c-2.9.8-5.1 3.1-5.9 6C0 12.5 0 24 0 24s0 11.5 1.5 16.3c.8 2.9 3 5.2 5.9 6C12.2 48 34 48 34 48s21.8 0 26.6-1.7c2.9-.8 5.1-3.1 5.9-6C68 35.5 68 24 68 24S68 12.5 66.5 7.7z" fill="#ff0000"/><path d="M45 24 27 14v20z" fill="#fff"/></svg></div>
-        </div>
-        <div class="video-info">
-          <span class="video-tag">Documentary · Fast Fashion</span>
-          <div class="video-title">The True Environmental Cost of Fast Fashion</div>
-          <div class="video-desc">An eye-opening documentary exposing how fast fashion's relentless production cycle damages ecosystems, exploits labour, and generates staggering levels of textile waste worldwide.</div>
-          <div class="video-takeaway"><span class="vt-label">Key insight</span><span class="vt-text">Fashion industry pollution is accelerating — driven by overproduction and a throwaway consumer culture.</span></div>
-          <div class="watch-link">▶ Watch on YouTube</div>
-        </div>
-      </div>
-
-      <div class="video-card" onclick="playVideo(this, 'BiSYoeqb_VY')">
-        <div class="video-thumb">
-          <img src="https://img.youtube.com/vi/BiSYoeqb_VY/hqdefault.jpg" alt="The Life Cycle of a T-shirt">
-          <div class="play-btn"><svg viewBox="0 0 68 48" width="44"><path d="M66.5 7.7c-.8-2.9-3-5.2-5.9-6C55.8 0 34 0 34 0S12.2 0 7.4 1.7c-2.9.8-5.1 3.1-5.9 6C0 12.5 0 24 0 24s0 11.5 1.5 16.3c.8 2.9 3 5.2 5.9 6C12.2 48 34 48 34 48s21.8 0 26.6-1.7c2.9-.8 5.1-3.1 5.9-6C68 35.5 68 24 68 24S68 12.5 66.5 7.7z" fill="#ff0000"/><path d="M45 24 27 14v20z" fill="#fff"/></svg></div>
-          <span class="vid-dur">4:53</span>
-        </div>
-        <div class="video-info">
-          <span class="video-tag">TED-Ed · LCA Explainer</span>
-          <div class="video-title">The Life Cycle of a T-shirt</div>
-          <div class="video-desc">An animated TED-Ed explainer tracing a cotton tee from farm to wardrobe and beyond — the clearest, most concise LCA walkthrough available for students.</div>
-          <div class="video-takeaway"><span class="vt-label">Key insight</span><span class="vt-text">Washing accounts for a surprisingly large share of a garment's total lifetime environmental impact.</span></div>
-          <div class="watch-link">▶ Watch on YouTube</div>
-        </div>
-      </div>
-
-      <div class="video-card" onclick="playVideo(this, 'VaS-iVwaOLw')">
-        <div class="video-thumb">
-          <img src="https://img.youtube.com/vi/VaS-iVwaOLw/hqdefault.jpg" alt="Fashion Industry and the Environment">
-          <div class="play-btn"><svg viewBox="0 0 68 48" width="44"><path d="M66.5 7.7c-.8-2.9-3-5.2-5.9-6C55.8 0 34 0 34 0S12.2 0 7.4 1.7c-2.9.8-5.1 3.1-5.9 6C0 12.5 0 24 0 24s0 11.5 1.5 16.3c.8 2.9 3 5.2 5.9 6C12.2 48 34 48 34 48s21.8 0 26.6-1.7c2.9-.8 5.1-3.1 5.9-6C68 35.5 68 24 68 24S68 12.5 66.5 7.7z" fill="#ff0000"/><path d="M45 24 27 14v20z" fill="#fff"/></svg></div>
-        </div>
-        <div class="video-info">
-          <span class="video-tag">Environment · Textile Waste</span>
-          <div class="video-title">Fashion's Hidden Environmental Crisis</div>
-          <div class="video-desc">A deep dive into how the global fashion supply chain — from cotton fields to landfills — is driving water scarcity, chemical pollution, and a mounting textile waste crisis.</div>
-          <div class="video-takeaway"><span class="vt-label">Key insight</span><span class="vt-text">The fashion industry's environmental damage is mostly invisible to consumers at the point of purchase.</span></div>
-          <div class="watch-link">▶ Watch on YouTube</div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
